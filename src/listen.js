@@ -22,11 +22,7 @@ const listen = (redirectUrl, port, callback) => {
     const code = new URL(redirectUrl + request.url).searchParams.get("code");
 
     if (code) {
-      response.end(
-        template(
-          "✅ Success! You can close this tab and go back to the terminal."
-        )
-      );
+      response.end(template("✅ Success! You can close this tab and go back to the terminal."));
       callback(code);
       server.close();
     } else {
