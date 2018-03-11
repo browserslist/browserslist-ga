@@ -4,7 +4,8 @@
   "description": "Target browsers tailored to your audience",
   "dependencies": {
     "googleapis": "^27.0.0",
-    "inquirer": "^5.1.0"
+    "inquirer": "^5.1.0",
+    "inquirer-datepicker-prompt": "^0.4.2"
   },
   "prettier": {
     "printWidth": 100,
