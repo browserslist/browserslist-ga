@@ -54,3 +54,7 @@ Apart from remembering to update this package, there's something else you should
 The point being, it's important to make decisions based on your audience.
 Browserslist-GA aims to help you with that.
 It integrates Google Analytics with Browserslist to keep your targeted browsers updated.
+
+## Kudos
+
+All the praise goes to the humans and martians that develop and maintain [Can I Use](https://caniuse.com) and [Browserslist](https://github.com/ai/browserslist). 
