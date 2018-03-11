@@ -26,7 +26,20 @@ const getWebProperties = (auth, accountId) =>
     });
   });
 
+const getProfiles = (auth, accountId, webPropertyId) =>
+  new Promise((resolve, reject) => {
+    analytics.management.profiles.list({ auth, accountId, webPropertyId }, (err, response) => {
+      if (err) return reject(err);
+
+      const results = response.data;
+      const profiles = results.items;
+
+      resolve(profiles);
+    });
+  });
+
 module.exports = {
   getAccounts,
   getWebProperties,
+  getProfiles,
 };
