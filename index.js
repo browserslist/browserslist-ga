@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const googleAuth = require("./src/google-auth");
-const { getAccounts, getWebProperties, getProfiles } = require("./src/google-analytics");
+const { getAccounts, getWebProperties, getProfiles, getData } = require("./src/google-analytics");
 
 inquirer.registerPrompt("datetime", require("inquirer-datepicker-prompt"));
 
@@ -75,8 +75,7 @@ googleAuth(oauth2Client => {
         },
       ]);
     })
-    .then(({ startDate, endDate }) => {
-      console.log(`Selected profile #${selectedProfile.id} with date range:`, startDate, endDate);
-    })
+    .then(({ startDate, endDate }) => getData(oauth2Client, selectedProfile.id, startDate, endDate))
+    .then(console.log)
     .catch(console.error);
 });

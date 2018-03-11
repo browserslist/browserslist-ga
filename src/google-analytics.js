@@ -38,8 +38,36 @@ const getProfiles = (auth, accountId, webPropertyId) =>
     });
   });
 
+const getData = (auth, profileId, startDate, endDate) =>
+  new Promise((resolve, reject) => {
+    const options = {
+      ids: `ga:${profileId}`,
+      dimensions: [
+        "ga:operatingSystem",
+        "ga:operatingSystemVersion",
+        "ga:browser",
+        "ga:browserVersion",
+        "ga:isMobile",
+      ].join(","),
+      sort: "ga:browser",
+      metrics: "ga:pageviews",
+      "start-date": startDate.toISOString().slice(0, 10),
+      "end-date": endDate.toISOString().slice(0, 10),
+    };
+
+    analytics.data.ga.get({ auth, ...options }, (err, response) => {
+      if (err) return reject(err);
+
+      const results = response.data;
+      const data = results.rows;
+
+      resolve(data);
+    });
+  });
+
 module.exports = {
   getAccounts,
   getWebProperties,
   getProfiles,
+  getData,
 };
