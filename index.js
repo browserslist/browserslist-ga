@@ -1,11 +1,11 @@
 const inquirer = require("inquirer");
 const googleAuth = require("./src/google-auth");
-const googleAnalytics = require("./src/google-analytics");
+const { getAccounts, getWebProperties } = require("./src/google-analytics");
 
 googleAuth(oauth2Client => {
-  googleAnalytics.getAccounts(oauth2Client, accounts => {
-    inquirer
-      .prompt([
+  getAccounts(oauth2Client)
+    .then(accounts =>
+      inquirer.prompt([
         {
           type: "list",
           name: "accountId",
@@ -16,10 +16,8 @@ googleAuth(oauth2Client => {
           })),
         },
       ])
-      .then(({ accountId }) => {
-        googleAnalytics.getWebProperties(oauth2Client, accountId, webProperties => {
-          console.log(webProperties);
-        });
-      });
-  });
+    )
+    .then(({ accountId }) => getWebProperties(oauth2Client, accountId))
+    .then(console.log)
+    .catch(console.error);
 });
