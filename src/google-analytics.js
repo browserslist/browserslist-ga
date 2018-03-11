@@ -15,6 +15,20 @@ const getAccounts = (auth, callback) => {
   });
 };
 
+const getWebProperties = (auth, accountId, callback) => {
+  analytics.management.webproperties.list({ auth, accountId }, (err, response) => {
+    if (err) {
+      return console.error(err);
+    }
+
+    const results = response.data;
+    const webProperties = results.items;
+
+    callback(webProperties);
+  });
+};
+
 module.exports = {
   getAccounts,
+  getWebProperties,
 };

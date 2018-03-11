@@ -16,8 +16,10 @@ googleAuth(oauth2Client => {
           })),
         },
       ])
-      .then(answers => {
-        console.log(answers.accountId);
+      .then(({ accountId }) => {
+        googleAnalytics.getWebProperties(oauth2Client, accountId, webProperties => {
+          console.log(webProperties);
+        });
       });
   });
 });
