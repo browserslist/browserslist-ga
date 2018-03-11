@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "Target browsers tailored to your audience",
   "dependencies": {
-    "googleapis": "^27.0.0"
+    "googleapis": "^27.0.0",
+    "inquirer": "^5.1.0"
   },
   "prettier": {
     "printWidth": 100,
