@@ -2,6 +2,24 @@
 
 Target browsers tailored to your audience.
 
+## How to use
+
+In the root directory of your project run:
+
+```yaml
+npx browserslist-ga
+```
+
+_([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+, for older versions run `npm install -g browserslist-ga` and then `browserslist-ga`)_
+
+You'll be asked to login with your Google Account. Your access token will only be used locally to generate a `browserslist-stats.json` file in the root of your project. After finishing the steps, you can use your stats with Browserlist by adding the following to your [Browserslist config](https://github.com/ai/browserslist#config-file):
+
+```yaml
+> 0.5% in my stats  # Or a different percentage
+```
+
+Note that you can query against your custom usage data while also querying against global or regional data. For example, the query `> 1% in my stats, > 5% in US, 10%` is permitted.
+
 ## Why should I care?
 
 Browsers update very often these days, with major releases getting published every month.
