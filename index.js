@@ -1,9 +1,12 @@
+const fs = require("fs");
 const inquirer = require("inquirer");
 const googleAuth = require("./src/google-auth");
 const { getAccounts, getWebProperties, getProfiles, getData } = require("./src/google-analytics");
 const parse = require("./src/caniuse-parser");
 
 inquirer.registerPrompt("datetime", require("inquirer-datepicker-prompt"));
+
+const outputFilename = "browserslist-stats.json";
 
 googleAuth(oauth2Client => {
   let selectedProfile;
@@ -78,6 +81,9 @@ googleAuth(oauth2Client => {
     })
     .then(({ startDate, endDate }) => getData(oauth2Client, selectedProfile.id, startDate, endDate))
     .then(parse)
-    .then(console.log)
+    .then(stats => {
+      fs.writeFileSync(outputFilename, JSON.stringify(stats, null, 2));
+      console.log(`Success! Stats saved to '${outputFilename}'`);
+    })
     .catch(console.error);
 });
