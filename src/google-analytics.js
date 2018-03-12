@@ -50,10 +50,13 @@ const getData = (auth, profileId, startDate, endDate) =>
         "ga:isMobile",
       ].join(","),
       sort: "ga:browser",
+      "max-results": 100000,
       metrics: "ga:pageviews",
       "start-date": startDate.toISOString().slice(0, 10),
       "end-date": endDate.toISOString().slice(0, 10),
     };
+
+    console.log("Getting data...");
 
     analytics.data.ga.get({ auth, ...options }, (err, response) => {
       if (err) return reject(err);

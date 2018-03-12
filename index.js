@@ -1,6 +1,7 @@
 const inquirer = require("inquirer");
 const googleAuth = require("./src/google-auth");
 const { getAccounts, getWebProperties, getProfiles, getData } = require("./src/google-analytics");
+const parse = require("./src/caniuse-parser");
 
 inquirer.registerPrompt("datetime", require("inquirer-datepicker-prompt"));
 
@@ -76,6 +77,7 @@ googleAuth(oauth2Client => {
       ]);
     })
     .then(({ startDate, endDate }) => getData(oauth2Client, selectedProfile.id, startDate, endDate))
+    .then(parse)
     .then(console.log)
     .catch(console.error);
 });

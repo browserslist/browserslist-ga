@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Target browsers tailored to your audience",
   "dependencies": {
+    "caniuse-lite": "^1.0.30000813",
     "googleapis": "^27.0.0",
     "inquirer": "^5.1.0",
     "inquirer-datepicker-prompt": "^0.4.2"
