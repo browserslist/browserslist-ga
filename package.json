@@ -1,7 +1,10 @@
 {
   "name": "@davidfrancisco/browserslist-ga",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Target browsers tailored to your audience",
+  "bin": {
+    "browserslist-ga": "./index.js"
+  },
   "dependencies": {
     "caniuse-lite": "^1.0.30000813",
     "googleapis": "^27.0.0",
