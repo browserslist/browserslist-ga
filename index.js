@@ -86,6 +86,10 @@ googleAuth(oauth2Client => {
     .then(stats => {
       fs.writeFileSync(outputFilename, JSON.stringify(stats, null, 2));
       console.log(`Success! Stats saved to '${outputFilename}'`);
+      process.exit();
     })
-    .catch(console.error);
+    .catch(err => {
+      console.error(err);
+      process.exit(1);
+    });
 });
