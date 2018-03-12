@@ -7,7 +7,7 @@ Target browsers tailored to your audience.
 In the root directory of your project run:
 
 ```yaml
-npx browserslist-ga
+npx @davidfrancisco/browserslist-ga
 ```
 
 _([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+, for older versions run `npm install -g browserslist-ga` and then `browserslist-ga`)_
