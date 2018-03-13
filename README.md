@@ -2,6 +2,16 @@
 
 Target browsers tailored to your audience.
 
+---
+
+<p align="center">
+  <strong><em>Interested in a bot that does all of this for you?
+    <a href="https://goo.gl/forms/WPS13gLAJTwqWQyy1">Click here!</a>
+  </em></strong>
+</p>
+
+---
+
 ## How to use
 
 In the root directory of your project run:
@@ -47,9 +57,9 @@ This means the caniuse database that is used to perform these queries will alway
 This is great because it's predictable, but it's important to update this package from time to time to keep up with the latest stats.
 Apart from remembering to update this package, there's something else you should consider:
 
-- For instance, in China there are some popular browsers that are not used in the US and Europe.
-- Or maybe your audience uses mostly mobile browsers.
-- Or maybe you are building an application for the government and need to support Internet Explorer 8.
+* For instance, in China there are some popular browsers that are not used in the US and Europe.
+* Or maybe your audience uses mostly mobile browsers.
+* Or maybe you are building an application for the government and need to support Internet Explorer 8.
 
 The point being, it's important to make decisions based on your audience.
 Browserslist-GA aims to help you with that.
@@ -57,4 +67,4 @@ It integrates Google Analytics with Browserslist to keep your targeted browsers 
 
 ## Kudos
 
-All the praise goes to the humans and martians that develop and maintain [Can I Use](https://caniuse.com) and [Browserslist](https://github.com/ai/browserslist). 
+All the praise goes to the humans and martians that develop and maintain [Can I Use](https://caniuse.com) and [Browserslist](https://github.com/ai/browserslist).
