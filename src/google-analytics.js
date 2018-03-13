@@ -62,7 +62,7 @@ const getData = (auth, profileId, startDate, endDate) =>
       if (err) return reject(err);
 
       const results = response.data;
-      const data = results.rows;
+      const data = results.rows || [];
 
       resolve(data);
     });
