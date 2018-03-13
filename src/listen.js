@@ -36,8 +36,6 @@ const listen = (redirectUrl, port, callback) => {
     if (err) {
       return console.error("An error has occurred:", err);
     }
-
-    console.log(`Server listening for Google's callback on port ${port}`);
   });
 };
 

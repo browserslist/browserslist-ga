@@ -1,3 +1,4 @@
+const portfinder = require("portfinder");
 const listen = require("./listen");
 const { google } = require("googleapis");
 
@@ -7,39 +8,38 @@ const clientId =
 const accessToken = process.env.BROWSERSLIST_GA_ACCESS_TOKEN;
 const refreshToken = process.env.BROWSERSLIST_GA_REFRESH_TOKEN;
 
-const port = 3000; // TODO Make this random and fail proof
-const redirectUrl = `http://127.0.0.1:${port}`;
-
-const oauth2Client = new google.auth.OAuth2(clientId, null, redirectUrl);
-
-const handleAuth = (tokens, callback) => {
-  oauth2Client.setCredentials(tokens);
-  callback(oauth2Client);
-};
-
 const googleAuth = callback => {
-  if (accessToken && refreshToken) {
-    return handleAuth({ access_token: accessToken, refresh_token: refreshToken }, callback);
-  }
+  portfinder.getPort((err, port) => {
+    if (err) {
+      return console.error(err);
+    }
 
-  const url = oauth2Client.generateAuthUrl({
-    scope: "https://www.googleapis.com/auth/analytics.readonly",
-  });
+    const redirectUrl = `http://127.0.0.1:${port}`;
+    const oauth2Client = new google.auth.OAuth2(clientId, null, redirectUrl);
 
-  console.log("Please open this URL in your browser:", url);
+    const handleAuth = (tokens, callback) => {
+      oauth2Client.setCredentials(tokens);
+      callback(oauth2Client);
+    };
 
-  listen(redirectUrl, port, code => {
-    console.log("Authorization code is:", code);
+    if (accessToken && refreshToken) {
+      return handleAuth({ access_token: accessToken, refresh_token: refreshToken }, callback);
+    }
 
-    oauth2Client.getToken(code, (err, tokens) => {
-      if (err) {
-        return console.error(err);
-      }
+    const url = oauth2Client.generateAuthUrl({
+      scope: "https://www.googleapis.com/auth/analytics.readonly",
+    });
 
-      console.log("Access token is:", tokens.access_token);
-      console.log("Refresh token is:", tokens.refresh_token);
+    console.log("Please open this URL in your browser:", url);
 
-      handleAuth(tokens, callback);
+    listen(redirectUrl, port, code => {
+      oauth2Client.getToken(code, (err, tokens) => {
+        if (err) {
+          return console.error(err);
+        }
+
+        handleAuth(tokens, callback);
+      });
     });
   });
 };
