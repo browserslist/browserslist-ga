@@ -41,6 +41,7 @@ const getProfiles = (auth, accountId, webPropertyId) =>
 const getData = (auth, profileId, startDate, endDate) =>
   new Promise((resolve, reject) => {
     const options = {
+      auth,
       ids: `ga:${profileId}`,
       dimensions: [
         "ga:operatingSystem",
@@ -58,7 +59,7 @@ const getData = (auth, profileId, startDate, endDate) =>
 
     console.log("Getting data...");
 
-    analytics.data.ga.get({ auth, ...options }, (err, response) => {
+    analytics.data.ga.get(options, (err, response) => {
       if (err) return reject(err);
 
       const results = response.data;
