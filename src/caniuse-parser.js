@@ -113,6 +113,20 @@ helpers.getIosSafariVersion = function(versionString) {
   return version;
 };
 
+var yaBrowserMapping = require('./mapping/yabrowser.js')
+
+helpers.getYaBrowserChromeMapping = function(versionString){
+  var parts = versionString.split('.')
+  var major = parseInt(parts[0])
+  var minor = parseInt(parts[1])
+  var mapping = yaBrowserMapping.find((v) => (v[0] < major || (v[0] == major && v[1] <= minor)))
+  if (mapping) {
+    return mapping[2]
+  }
+  return 1
+}
+
+
 helpers.getVersionMatch = function(browserId, versionString) {
   var version;
   var id = browserId + versionString;
@@ -248,7 +262,11 @@ function handleDataFeed(entries) {
           v_num = helpers.getIntVersion(version);
         }
         break;
-
+      case "YaBrowser":
+        // a blink-based browser with different interface
+        browser = "Chrome";
+        v_num = helpers.getYaBrowserChromeMapping(version)
+        break;
       case "Opera":
         v_num = helpers.getOperaVersion(version);
         break;
