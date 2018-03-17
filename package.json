@@ -10,6 +10,9 @@
   "engines": {
     "node": ">= 8.0.0"
   },
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
     "caniuse-lite": "^1.0.30000815",
     "googleapis": "^27.0.0",
@@ -20,5 +23,8 @@
   "prettier": {
     "printWidth": 100,
     "trailingComma": "es5"
+  },
+  "devDependencies": {
+    "jest": "^22.4.2"
   }
 }
