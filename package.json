@@ -11,6 +11,7 @@
     "node": ">= 8.0.0"
   },
   "scripts": {
+    "precommit": "lint-staged",
     "test": "jest"
   },
   "dependencies": {
@@ -24,7 +25,13 @@
     "printWidth": 100,
     "trailingComma": "es5"
   },
+  "lint-staged": {
+    "src/**/*.js": ["prettier --write", "git add"]
+  },
   "devDependencies": {
-    "jest": "^22.4.2"
+    "husky": "^0.14.3",
+    "jest": "^22.4.2",
+    "lint-staged": "^7.0.0",
+    "prettier": "^1.11.1"
   }
 }
