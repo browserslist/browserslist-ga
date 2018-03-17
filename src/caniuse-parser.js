@@ -211,18 +211,11 @@ function handleDataFeed(entries) {
     var isMobile = entry[4] == "Yes";
     var pageviews = +entry[5];
 
-    if (
-      (browser == "Safari" || browser == "Chrome") &&
-      (os == "iOS" || os == "iPad" || os == "iPhone" || os == "iPod")
-    ) {
-      browser = "iOS Safari";
-    } else if (
-      browser == "Mozilla Compatible Agent" &&
-      (os == "iPad" || os == "iPhone" || os == "iPod")
-    ) {
-      browser = "iOS Safari"; //browser = 'iOS app';
-    } else if (browser == "Opera" && (isMobile || os == "(not set)")) {
+    if (browser == "Opera" && (isMobile || os == "(not set)")) {
       browser = "Opera Mobile";
+    } else if (os == "iOS" || os == "iPad" || os == "iPhone" || os == "iPod") {
+      // all apps on ios must use safari engine by apple rules
+      browser = "iOS Safari";
     } else if (browser == "Safari (in-app)") {
       browser = "iOS Safari";
     } else if (browser == "BlackBerry") {
