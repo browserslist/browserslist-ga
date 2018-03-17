@@ -1,6 +1,6 @@
 {
   "name": "browserslist-ga",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Target browsers tailored to your audience",
   "repository": "github:dmfrancisco/browserslist-ga",
   "license": "MIT",
@@ -11,7 +11,7 @@
     "node": ">= 8.0.0"
   },
   "dependencies": {
-    "caniuse-lite": "^1.0.30000813",
+    "caniuse-lite": "^1.0.30000815",
     "googleapis": "^27.0.0",
     "inquirer": "^5.1.0",
     "inquirer-datepicker-prompt": "^0.4.2",
