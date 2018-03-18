@@ -1,6 +1,8 @@
 /* Code adapted from caniuse.com with permission */
 
 var agentData = require("./caniuse-agent-data");
+var yaBrowserMapping = require("./mapping/yabrowser.json");
+
 var helpers = {};
 var versionCache = {};
 var browsers;
@@ -113,19 +115,16 @@ helpers.getIosSafariVersion = function(versionString) {
   return version;
 };
 
-var yaBrowserMapping = require('./mapping/yabrowser.js')
+helpers.getYaBrowserChromeMapping = function(versionString) {
+  var parts = versionString.split(".");
+  var major = parseInt(parts[0]);
+  var minor = parseInt(parts[1]);
+  var mapping = yaBrowserMapping.find(v => v[0] < major || (v[0] == major && v[1] <= minor));
 
-helpers.getYaBrowserChromeMapping = function(versionString){
-  var parts = versionString.split('.')
-  var major = parseInt(parts[0])
-  var minor = parseInt(parts[1])
-  var mapping = yaBrowserMapping.find((v) => (v[0] < major || (v[0] == major && v[1] <= minor)))
   if (mapping) {
-    return mapping[2]
+    return mapping[2];
   }
-  return 1
-}
-
+};
 
 helpers.getVersionMatch = function(browserId, versionString) {
   var version;
@@ -263,9 +262,11 @@ function handleDataFeed(entries) {
         }
         break;
       case "YaBrowser":
-        // a blink-based browser with different interface
-        browser = "Chrome";
-        v_num = helpers.getYaBrowserChromeMapping(version)
+        // This is valid for both Desktop and Android (iOS is considered Safari)
+        v_num = helpers.getYaBrowserChromeMapping(version);
+        if (v_num) {
+          browser = "Chrome";
+        }
         break;
       case "Opera":
         v_num = helpers.getOperaVersion(version);
