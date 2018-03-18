@@ -1,6 +1,8 @@
 /* Code adapted from caniuse.com with permission */
 
 var agentData = require("./caniuse-agent-data");
+var yaBrowserMapping = require("./mapping/yabrowser.json");
+
 var helpers = {};
 var versionCache = {};
 var browsers;
@@ -111,6 +113,17 @@ helpers.getIosSafariVersion = function(versionString) {
   var version = major + "." + minor;
   version = helpers.getVersionMatch("ios_saf", version);
   return version;
+};
+
+helpers.getYaBrowserChromeMapping = function(versionString) {
+  var parts = versionString.split(".");
+  var major = parseInt(parts[0]);
+  var minor = parseInt(parts[1]);
+  var mapping = yaBrowserMapping.find(v => v[0] < major || (v[0] == major && v[1] <= minor));
+
+  if (mapping) {
+    return mapping[2];
+  }
 };
 
 helpers.getVersionMatch = function(browserId, versionString) {
@@ -241,7 +254,13 @@ function handleDataFeed(entries) {
           v_num = helpers.getIntVersion(version);
         }
         break;
-
+      case "YaBrowser":
+        // This is valid for both Desktop and Android (iOS is considered Safari)
+        v_num = helpers.getYaBrowserChromeMapping(version);
+        if (v_num) {
+          browser = "Chrome";
+        }
+        break;
       case "Opera":
         v_num = helpers.getOperaVersion(version);
         break;
