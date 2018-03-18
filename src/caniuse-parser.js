@@ -258,7 +258,7 @@ function handleDataFeed(entries) {
         // This is valid for both Desktop and Android (iOS is considered Safari)
         v_num = helpers.getYaBrowserChromeMapping(version);
         if (v_num) {
-          browser = "Chrome";
+          browser = os == "Android" ? "Chrome for Android" : "Chrome";
         }
         break;
       case "Opera":
