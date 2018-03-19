@@ -19,6 +19,7 @@
     "googleapis": "^27.0.0",
     "inquirer": "^5.1.0",
     "inquirer-datepicker-prompt": "^0.4.2",
+    "map-to-chrome": "0.0.1",
     "portfinder": "^1.0.13"
   },
   "prettier": {
