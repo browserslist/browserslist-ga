@@ -4,7 +4,7 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const googleAuth = require("./src/google-auth");
 const { getAccounts, getWebProperties, getProfiles, getData } = require("./src/google-analytics");
-const parse = require("./src/caniuse-parser");
+const { parse } = require("./src/caniuse-parser");
 
 inquirer.registerPrompt("datetime", require("inquirer-datepicker-prompt"));
 
