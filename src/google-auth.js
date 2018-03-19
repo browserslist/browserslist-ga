@@ -1,5 +1,6 @@
 const portfinder = require("portfinder");
 const listen = require("./listen");
+const opener = require("opener");
 const { google } = require("googleapis");
 
 const clientId =
@@ -31,6 +32,11 @@ const googleAuth = callback => {
     });
 
     console.log("Please open this URL in your browser:", url);
+    try {
+      opener(url);
+    } catch (e) {
+      /* User will have to open manually */
+    }
 
     listen(redirectUrl, port, code => {
       oauth2Client.getToken(code, (err, tokens) => {

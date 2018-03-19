@@ -20,6 +20,7 @@
     "inquirer": "^5.1.0",
     "inquirer-datepicker-prompt": "^0.4.2",
     "map-to-chrome": "0.0.1",
+    "opener": "^1.4.3",
     "portfinder": "^1.0.13"
   },
   "prettier": {
