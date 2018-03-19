@@ -1,6 +1,7 @@
 /* Code adapted from caniuse.com with permission */
 
 var yaBrowserMapping = require("map-to-chrome/browsers/yabrowser.json");
+var cocCocMapping = require("map-to-chrome/browsers/coccoc.json");
 var agentData = require("./caniuse-agent-data");
 
 var helpers = {};
@@ -115,15 +116,23 @@ helpers.getIosSafariVersion = function(versionString) {
   return version;
 };
 
-helpers.getYaBrowserChromeMapping = function(versionString) {
+helpers.getChromeMapping = function(mapping, versionString) {
   var parts = versionString.split(".");
   var major = parseInt(parts[0]);
   var minor = parseInt(parts[1]);
-  var mapping = yaBrowserMapping.find(v => v[0] < major || (v[0] == major && v[1] <= minor));
+  var entry = mapping.find(v => v[0] < major || (v[0] == major && v[1] <= minor));
 
-  if (mapping) {
-    return mapping[2];
+  if (entry) {
+    return entry[2];
   }
+};
+
+helpers.getYaBrowserChromeMapping = function(versionString) {
+  return helpers.getChromeMapping(yaBrowserMapping, versionString);
+};
+
+helpers.getCocCocChromeMapping = function(versionString) {
+  return helpers.getChromeMapping(cocCocMapping, versionString);
 };
 
 helpers.getVersionMatch = function(browserId, versionString) {
@@ -246,6 +255,7 @@ function parse(entries) {
         browser = "Edge";
         v_num = helpers.getIntVersion(version);
         break;
+
       case "Chrome":
         if (os == "Android") {
           browser += " for Android";
@@ -254,6 +264,7 @@ function parse(entries) {
           v_num = helpers.getIntVersion(version);
         }
         break;
+
       case "YaBrowser":
         // This is valid for both Desktop and Android (iOS is considered Safari)
         v_num = helpers.getYaBrowserChromeMapping(version);
@@ -261,6 +272,15 @@ function parse(entries) {
           browser = os == "Android" ? "Chrome for Android" : "Chrome";
         }
         break;
+
+      case "Coc Coc":
+        // This is valid for both Desktop and Android (iOS is considered Safari)
+        v_num = helpers.getCocCocChromeMapping(version);
+        if (v_num) {
+          browser = os == "Android" ? "Chrome for Android" : "Chrome";
+        }
+        break;
+
       case "Opera":
         v_num = helpers.getOperaVersion(version);
         break;
@@ -311,12 +331,15 @@ function parse(entries) {
       case "iOS app":
         v_num = "x";
         break;
+
       case "Blackberry Browser":
         v_num = version.split(".")[0];
         break;
+
       case "UC Browser for Android":
         v_num = CURRENT_VERSION; // helpers.getSubVersion(version);
         break;
+
       default:
         v_num = null;
     }
