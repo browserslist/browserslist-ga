@@ -208,7 +208,7 @@ function convertBrowserData(allData) {
   allData.usage = newUsage;
 }
 
-function handleDataFeed(entries) {
+function parse(entries) {
   var browsers = { others: 0 };
   var other_total = 0;
   var tracked_total = 0;
@@ -374,4 +374,7 @@ function handleDataFeed(entries) {
   return data_obj.usage;
 }
 
-module.exports = handleDataFeed;
+module.exports = {
+  parse,
+  helpers,
+};
