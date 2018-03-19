@@ -20,7 +20,8 @@ In the root directory of your project run:
 npx browserslist-ga
 ```
 
-_([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+, for older versions run `npm install -g browserslist-ga` and then `browserslist-ga`)_
+_([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+, for older versions run `npm install -g browserslist-ga` and then `browserslist-ga`)_  
+_(to run the latest code directly from GitHub, execute `npx github:dmfrancisco/browserslist-ga` instead)_
 
 You'll be asked to login with your Google Account. Your access token will only be used locally to generate a `browserslist-stats.json` file in the root of your project. After finishing the steps, you can use your stats with Browserlist by adding the following to your [Browserslist config](https://github.com/ai/browserslist#config-file):
 
