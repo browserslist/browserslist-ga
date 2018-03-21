@@ -72,7 +72,7 @@ There are some differences compared to the `caniuse` Google Analytics importer:
 
 * All browsers on iOS use Safari's WebKit as the underlying engine, and hence will be resolved to Safari. The  `caniuse` Google Analytics parser only converts some of the data to Safari, while the remaining is left untracked (see [#1](https://github.com/dmfrancisco/browserslist-ga/pull/1)).
 * YaBrowser, a popular browser in russian-speaking countries, uses the Blink web browser engine and is based on Chromium. It is currently not available on `caniuse` and so is resolved to Chrome (or Chrome for Android) and the version is mapped to the nearest available version (see [#2](https://github.com/dmfrancisco/browserslist-ga/pull/2)).
-* Just like for YaBrowser, the [same approach](https://github.com/dmfrancisco/map-to-chrome/blob/master/browsers/coccoc.json) is applied to the Coc Coc browser.
+* Just like for YaBrowser, the [same approach](https://github.com/dmfrancisco/map-to-chrome/blob/master/data/coc_coc_browser.json) is applied to the Coc Coc browser.
 
 ## Kudos
 
