@@ -21,7 +21,7 @@ npx browserslist-ga
 ```
 
 _([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+, for older versions run `npm install -g browserslist-ga` and then `browserslist-ga`)_  
-_(to run the latest code directly from GitHub, execute `npx github:dmfrancisco/browserslist-ga` instead)_
+_(to run the latest code directly from GitHub, execute `npx github:browserslist/browserslist-ga` instead)_
 
 You'll be asked to login with your Google Account. Your access token will only be used locally to generate a `browserslist-stats.json` file in the root of your project. After finishing the steps, you can use your stats with Browserlist by adding the following to your [Browserslist config](https://github.com/ai/browserslist#config-file):
 
@@ -70,8 +70,8 @@ It integrates Google Analytics with Browserslist to keep your targeted browsers 
 
 There are some differences compared to the `caniuse` Google Analytics importer:
 
-* All browsers on iOS use Safari's WebKit as the underlying engine, and hence will be resolved to Safari. The  `caniuse` Google Analytics parser only converts some of the data to Safari, while the remaining is left untracked (see [#1](https://github.com/dmfrancisco/browserslist-ga/pull/1)).
-* YaBrowser, a popular browser in russian-speaking countries, uses the Blink web browser engine and is based on Chromium. It is currently not available on `caniuse` and so is resolved to Chrome (or Chrome for Android) and the version is mapped to the nearest available version (see [#2](https://github.com/dmfrancisco/browserslist-ga/pull/2)).
+* All browsers on iOS use Safari's WebKit as the underlying engine, and hence will be resolved to Safari. The  `caniuse` Google Analytics parser only converts some of the data to Safari, while the remaining is left untracked (see [#1](https://github.com/browserslist/browserslist-ga/pull/1)).
+* YaBrowser, a popular browser in russian-speaking countries, uses the Blink web browser engine and is based on Chromium. It is currently not available on `caniuse` and so is resolved to Chrome (or Chrome for Android) and the version is mapped to the nearest available version (see [#2](https://github.com/browserslist/browserslist-ga/pull/2)).
 * Just like for YaBrowser, the [same approach](https://github.com/dmfrancisco/map-to-chrome/blob/master/data/coc_coc_browser.json) is applied to the Coc Coc browser.
 
 ## Kudos
