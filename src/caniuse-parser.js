@@ -1,7 +1,7 @@
 /* Code adapted from caniuse.com with permission */
 
-var yaBrowserMapping = require("map-to-chrome/browsers/yabrowser.json");
-var cocCocMapping = require("map-to-chrome/browsers/coccoc.json");
+var yaBrowserMapping = require("map-to-chrome/data/YaBrowser.json");
+var cocCocMapping = require("map-to-chrome/data/coc_coc_browser.json");
 var agentData = require("./caniuse-agent-data");
 
 var helpers = {};
