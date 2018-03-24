@@ -30,6 +30,23 @@
   "lint-staged": {
     "src/**/*.js": ["prettier --write", "git add"]
   },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 6
+    },
+    "rules": {
+      "no-console": "off"
+    },
+    "globals": {
+      "expect": false,
+      "test": false
+    }
+  },
   "devDependencies": {
     "husky": "^0.14.3",
     "jest": "^22.4.2",
