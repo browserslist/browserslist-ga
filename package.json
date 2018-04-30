@@ -1,6 +1,6 @@
 {
   "name": "browserslist-ga",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Target browsers tailored to your audience",
   "repository": "github:browserslist/browserslist-ga",
   "license": "MIT",
@@ -15,9 +15,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "caniuse-lite": "^1.0.30000815",
+    "caniuse-lite": "^1.0.30000832",
     "googleapis": "^27.0.0",
-    "inquirer": "^5.1.0",
+    "inquirer": "^5.2.0",
     "inquirer-datepicker-prompt": "^0.4.2",
     "map-to-chrome": "0.0.2",
     "opener": "^1.4.3",
@@ -49,8 +49,8 @@
   },
   "devDependencies": {
     "husky": "^0.14.3",
-    "jest": "^22.4.2",
-    "lint-staged": "^7.0.0",
-    "prettier": "^1.11.1"
+    "jest": "^22.4.3",
+    "lint-staged": "^7.0.5",
+    "prettier": "^1.12.1"
   }
 }
