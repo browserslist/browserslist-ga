@@ -5,13 +5,14 @@ const inquirer = require("inquirer");
 const googleAuth = require("./src/google-auth");
 const { getAccounts, getWebProperties, getProfiles, getData } = require("./src/google-analytics");
 const { parse } = require("./src/caniuse-parser");
+const { metadata } = require("./src/metadata");
 
 inquirer.registerPrompt("datetime", require("inquirer-datepicker-prompt"));
 
 const outputFilename = "browserslist-stats.json";
 
 googleAuth(oauth2Client => {
-  let selectedProfile;
+  const selections = {}
 
   getAccounts(oauth2Client)
     .then(accounts =>
@@ -27,7 +28,11 @@ googleAuth(oauth2Client => {
         },
       ])
     )
-    .then(({ account }) => getWebProperties(oauth2Client, account.id))
+    .then(({ account }) => {
+      selections.selectedAccount = account;
+
+      return getWebProperties(oauth2Client, account.id);
+    })
     .then(webProperties =>
       inquirer.prompt([
         {
@@ -41,7 +46,11 @@ googleAuth(oauth2Client => {
         },
       ])
     )
-    .then(({ webProperty }) => getProfiles(oauth2Client, webProperty.accountId, webProperty.id))
+    .then(({ webProperty }) => {
+      selections.selectedProperty = webProperty;
+
+      return getProfiles(oauth2Client, webProperty.accountId, webProperty.id);
+    })
     .then(profiles =>
       inquirer.prompt([
         {
@@ -56,10 +65,10 @@ googleAuth(oauth2Client => {
       ])
     )
     .then(({ profile }) => {
+      selections.selectedProfile = profile;
+
       const defaultStartDate = new Date();
       const defaultEndDate = new Date();
-
-      selectedProfile = profile;
 
       // End date defaults to today, start date defaults to 90 days ago
       defaultStartDate.setDate(defaultEndDate.getDate() - 90);
@@ -81,10 +90,17 @@ googleAuth(oauth2Client => {
         },
       ]);
     })
-    .then(({ startDate, endDate }) => getData(oauth2Client, selectedProfile.id, startDate, endDate))
-    .then(parse)
-    .then(stats => {
-      fs.writeFileSync(outputFilename, JSON.stringify(stats, null, 2));
+    .then(({ startDate, endDate }) => {
+      selections.selectedStartDate = startDate;
+      selections.selectedEndDate = endDate;
+
+      return getData(oauth2Client, selections.selectedProfile.id, startDate, endDate);
+    })
+    .then(data => ({ stats: parse(data), metadata: metadata(new Date(), selections) }))
+    .then(({ stats, metadata }) => {
+      const output = Object.assign({}, stats, metadata);
+
+      fs.writeFileSync(outputFilename, JSON.stringify(output, null, 2));
       console.log(`Success! Stats saved to '${outputFilename}'`);
       process.exit();
     })
