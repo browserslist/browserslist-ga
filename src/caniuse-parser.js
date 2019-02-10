@@ -336,6 +336,10 @@ function parse(entries) {
         v_num = version.split(".")[0];
         break;
 
+      case "Samsung Internet":
+        v_num = helpers.getVersionMatch("samsung", version);
+        break;
+
       case "UC Browser for Android":
         v_num = CURRENT_VERSION; // helpers.getSubVersion(version);
         break;
