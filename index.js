@@ -14,6 +14,13 @@ googleAuth(oauth2Client => {
   let selectedProfile;
 
   getAccounts(oauth2Client)
+    .then((accounts) => {
+      if (accounts.length === 0) {
+        throw new Error('No Google Analytics accounts.')
+      }
+
+      return accounts;
+    })
     .then(accounts =>
       inquirer.prompt([
         {
