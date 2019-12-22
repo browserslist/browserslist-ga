@@ -15,13 +15,13 @@
     "test": "jest"
   },
   "dependencies": {
-    "caniuse-lite": "^1.0.30000832",
+    "caniuse-lite": "^1.0.30001016",
     "googleapis": "^38.0.0",
     "inquirer": "^5.2.0",
     "inquirer-datepicker-prompt": "^0.4.2",
     "map-to-chrome": "0.0.3",
-    "opener": "^1.4.3",
-    "portfinder": "^1.0.13"
+    "opener": "^1.5.1",
+    "portfinder": "^1.0.25"
   },
   "prettier": {
     "printWidth": 100,
@@ -54,6 +54,6 @@
     "husky": "^0.14.3",
     "jest": "^22.4.3",
     "lint-staged": "^7.0.5",
-    "prettier": "^1.12.1"
+    "prettier": "^1.19.1"
   }
 }
