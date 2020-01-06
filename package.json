@@ -50,6 +50,9 @@
       "test": false
     }
   },
+  "jest": {
+    "testURL": "http://localhost/"
+  },
   "devDependencies": {
     "husky": "^0.14.3",
     "jest": "^22.4.3",
