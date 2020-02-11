@@ -48,7 +48,7 @@ const getData = (auth, profileId, startDate, endDate) =>
         "ga:operatingSystemVersion",
         "ga:browser",
         "ga:browserVersion",
-        "ga:isMobile",
+        "ga:deviceCategory",
       ].join(","),
       sort: "ga:browser",
       "max-results": 100000,
