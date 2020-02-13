@@ -202,7 +202,7 @@ function convertBrowserData(allData) {
       }
       if (browserGAStats[versionNumber]) {
         amount = browserGAStats[versionNumber];
-        var percentage = amount / full_total * 100;
+        var percentage = (amount / full_total) * 100;
         usageByVersion[versionNumber] = percentage;
         matched += amount;
         browserGAStats.total -= amount;
@@ -230,7 +230,7 @@ function parse(entries) {
     var os_ver = entry[1];
     var browser = entry[2];
     var version = entry[3];
-    var isMobile = entry[4] == "Yes";
+    var isMobile = entry[4] === "mobile" || entry[4] === "tablet";
     var pageviews = +entry[5];
 
     if (browser == "Opera" && (isMobile || os == "(not set)")) {
