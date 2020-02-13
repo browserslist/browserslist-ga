@@ -1,6 +1,6 @@
 {
   "name": "browserslist-ga",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Target browsers tailored to your audience",
   "repository": "github:browserslist/browserslist-ga",
   "license": "MIT",
