@@ -17,17 +17,17 @@ helpers.setData = function(data) {
 
 // iOS apps use iOS user agent string but give no version info, so distribute based on known data
 helpers.distributeIOS = function() {
-  if (!("iOS Safari" in browsers) || !("iOS app" in browsers)) {
+  if (!("Safari on iOS" in browsers) || !("iOS app" in browsers)) {
     return;
   }
-  var iOSTotal = browsers["iOS Safari"].total;
+  var iOSTotal = browsers["Safari on iOS"].total;
   var appTotal = browsers["iOS app"].total;
 
   // Distribute iOS app points
-  for (var o in browsers["iOS Safari"]) {
-    var val = browsers["iOS Safari"][o];
+  for (var o in browsers["Safari on iOS"]) {
+    var val = browsers["Safari on iOS"][o];
     var ratio = val / iOSTotal;
-    browsers["iOS Safari"][o] += Math.round(ratio * appTotal);
+    browsers["Safari on iOS"][o] += Math.round(ratio * appTotal);
   }
   delete browsers["iOS app"];
 };
@@ -237,9 +237,9 @@ function parse(entries) {
       browser = "Opera Mobile";
     } else if (os == "iOS" || os == "iPad" || os == "iPhone" || os == "iPod") {
       // all apps on ios must use safari engine by apple rules
-      browser = "iOS Safari";
+      browser = "Safari on iOS";
     } else if (browser == "Safari (in-app)") {
-      browser = "iOS Safari";
+      browser = "Safari on iOS";
     } else if (browser == "BlackBerry") {
       browser = "Blackberry Browser";
     } else if (browser == "Internet Explorer") {
@@ -324,7 +324,7 @@ function parse(entries) {
         v_num = CURRENT_VERSION;
         break;
 
-      case "iOS Safari":
+      case "Safari on iOS":
         v_num = helpers.getIosSafariVersion(os_ver);
         break;
 
