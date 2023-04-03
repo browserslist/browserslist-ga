@@ -12,12 +12,32 @@ Target browsers tailored to your audience.
 
 ---
 
+## Prerequisites
+
+Before using `browserlist-ga` you need to create an app and grant API access using [Google Cloud Console](https://console.cloud.google.com).
+
+1. OAuth consent screen
+
+If you do not have an OAuth consent screen configured, you will need to [configure one](https://developers.google.com/workspace/guides/configure-oauth-consent). If you are not planning to publish the app to external users, you can set up Test users who will have immediate access to the app.
+
+2. OAuth 2.0 Client ID
+
+Once you have configured the OAuth consent screen, you need to [configure an OAuth 2.0 Client ID](https://console.cloud.google.com/apis/credentials).
+
+Configure the OAuth Client as a _Desktop_ App. You may give it any name you wish.
+
+From the following screen, copy the Client ID and Client secret as you will need to input them as environment variables when running the app.
+
+3. Enable Google Analytics API
+
+Finally, you are required to [enable Google Analytics API access](https://console.cloud.google.com/apis/library/analytics.googleapis.com).
+
 ## How to use
 
 In the root directory of your project run:
 
-```yaml
-npx browserslist-ga
+```sh
+BROWSERSLIST_GA_CLIENT_ID=my_client_id.apps.googleusercontent.com BROWSERSLIST_GA_SECRET_TOKEN=my_secret npx browserslist-ga
 ```
 
 _([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+, for older versions run `npm install -g browserslist-ga` and then `browserslist-ga`)_  
