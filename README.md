@@ -20,9 +20,13 @@ Before using `browserlist-ga` you need to create an app and grant API access usi
 
 If you do not have an OAuth consent screen configured, you will need to [configure one](https://developers.google.com/workspace/guides/configure-oauth-consent). If you are not planning to publish the app to external users, you can set up Test users who will have immediate access to the app.
 
+![OAuth consent screen](https://user-images.githubusercontent.com/8075326/229480792-3452aa04-f299-4c70-bbab-dfe1f6319dca.png)
+
 2. OAuth 2.0 Client ID
 
 Once you have configured the OAuth consent screen, you need to [configure an OAuth 2.0 Client ID](https://console.cloud.google.com/apis/credentials).
+
+![OAuth 2.0 Client ID](https://user-images.githubusercontent.com/8075326/229480881-2410a122-cc43-41fb-8e02-e1dd983594bd.png)
 
 Configure the OAuth Client as a _Desktop_ App. You may give it any name you wish.
 
@@ -31,6 +35,8 @@ From the following screen, copy the Client ID and Client secret as you will need
 3. Enable Google Analytics API
 
 Finally, you are required to [enable Google Analytics API access](https://console.cloud.google.com/apis/library/analytics.googleapis.com).
+
+![Enable Google Analytics API](https://user-images.githubusercontent.com/8075326/229480950-03de62c3-8fb2-47d3-8f1f-5f01177590c9.png)
 
 ## How to use
 
