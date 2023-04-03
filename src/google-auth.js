@@ -3,20 +3,29 @@ const listen = require("./listen");
 const opener = require("opener");
 const { google } = require("googleapis");
 
-const clientId =
-  process.env.BROWSERSLIST_GA_CLIENT_ID ||
-  "343796874716-6k918h5uajk7k3apdua9n8m6her4igv7.apps.googleusercontent.com";
+const clientId = process.env.BROWSERSLIST_GA_CLIENT_ID;
 const accessToken = process.env.BROWSERSLIST_GA_ACCESS_TOKEN;
 const refreshToken = process.env.BROWSERSLIST_GA_REFRESH_TOKEN;
+const secretToken = process.env.BROWSERSLIST_GA_SECRET_TOKEN;
 
 const googleAuth = callback => {
+  if (!clientId) {
+    console.error("Please set the BROWSERSLIST_GA_CLIENT_ID environment variable.");
+    process.exit(1);
+  }
+
+  if (!secretToken) {
+    console.error("Please set the BROWSERSLIST_GA_SECRET_TOKEN environment variable.");
+    process.exit(1);
+  }
+
   portfinder.getPort((err, port) => {
     if (err) {
       return console.error(err);
     }
 
     const redirectUrl = `http://127.0.0.1:${port}`;
-    const oauth2Client = new google.auth.OAuth2(clientId, null, redirectUrl);
+    const oauth2Client = new google.auth.OAuth2(clientId, secretToken, redirectUrl);
 
     const handleAuth = (tokens, callback) => {
       oauth2Client.setCredentials(tokens);
